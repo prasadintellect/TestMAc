@@ -1,0 +1,22 @@
+workflows:
+  ios-workflow:
+    name: iOS Build
+    environment:
+      vars:
+        BUNDLE_ID: "com.yourcompany.yourapp"
+        APP_VERSION: "1.0.0"
+      xcode: latest
+      cocoapods: default
+    scripts:
+      - name: Install dependencies
+        script: |
+          flutter pub get
+      - name: Build iOS release
+        script: |
+          flutter build ios --release --no-codesign
+    artifacts:
+      - build/ios/iphoneos/*.ipa
+    publishing:
+      email:
+        recipients:
+          - krishnaprasadtuk@gmail.com
